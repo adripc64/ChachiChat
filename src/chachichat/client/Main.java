@@ -26,6 +26,7 @@ public class Main {
 	}
 	
 	public static void running(ChatClient client, Scanner sc) {
+		sc.nextLine(); // Para limpiar lo que hubiera :P
 		String line = sc.nextLine();
 		while (!line.equals("exit")) {
 			client.sendMessage(line);

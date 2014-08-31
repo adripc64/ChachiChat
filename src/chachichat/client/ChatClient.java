@@ -3,6 +3,7 @@ package chachichat.client;
 import java.io.IOException;
 
 import chachichat.packets.Packets;
+import chachichat.packets.Packets.*;
 
 import com.esotericsoftware.kryonet.Client;
 
@@ -21,11 +22,8 @@ public class ChatClient {
 	}
 
 	public void sendMessage(String msg) {
-		
-		//PacketMessage pck = new PacketMessage(msg);
-		//client.sendTCP(pck);
-		client.sendTCP(msg);
-		
+		PacketMessage pck = new PacketMessage(msg);
+		client.sendTCP(pck);
 	}
 	
 }
