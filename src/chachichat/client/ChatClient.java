@@ -22,7 +22,7 @@ public class ChatClient {
 		
 	}
 
-	private void sendMessage(String msg) {
+	public void sendMessage(String msg) {
 		
 		PacketMessage pck = new PacketMessage(msg);
 		client.sendTCP(pck);
