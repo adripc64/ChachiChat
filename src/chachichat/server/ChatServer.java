@@ -16,7 +16,15 @@ public class ChatServer {
 		server = new Server();
 		server.start();
 		server.bind(port);
-
+		server.addListener(new ServerListener());
+		
+		System.out.println("Server running at port " + port + "...");
+		
+	}
+	
+	private void registerPackets() {
+		
+		
 		
 	}
 		

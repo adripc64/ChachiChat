@@ -1,15 +1,13 @@
-package chachichat.server;
+package chachichat.client;
 
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
-public class ServerListener extends Listener {
-
+public class ClientListener extends Listener {
+	
 	@Override
 	public void connected(Connection connection) {
 		super.connected(connection);
-		String ip = connection.getRemoteAddressTCP().getHostString();
-		System.out.println("Nueva conexión desde: " + ip);
 	}
 	
 	@Override
