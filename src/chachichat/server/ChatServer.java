@@ -1,5 +1,5 @@
 package chachichat.server;
 
-public class Server {
-	
+public class ChatServer {
+		
 }
