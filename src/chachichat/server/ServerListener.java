@@ -1,12 +1,17 @@
 package chachichat.server;
 
-
-import chachichat.packets.Packets.*;
-
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
+import com.esotericsoftware.kryonet.Server;
 
 public class ServerListener extends Listener {
+	
+	private Server server;
+	
+	public ServerListener(Server server) {
+		super();
+		this.server = server;
+	}
 
 	@Override
 	public void connected(Connection connection) {
@@ -20,17 +25,21 @@ public class ServerListener extends Listener {
 	
 	@Override
 	public void received(Connection connection, Object object) {
-		System.out.println("asdfadfas");		
+		
 		String ip = connection.getRemoteAddressTCP().getHostString();
 		
 		if (object instanceof String) {
 			String msg = (String) object;
 			System.out.println(ip + ": " + msg);
+			for (Connection con : server.getConnections()) {
+				con.sendTCP(ip + ": " + msg);
+			}
+			
 		}
-		if (object instanceof PacketMessage) {
-			PacketMessage pck = (PacketMessage) object;
-			System.out.println(ip + ": " + pck.msg);
-		}
+//		if (object instanceof PacketMessage) {
+//			PacketMessage pck = (PacketMessage) object;
+//			System.out.println(ip + ": " + pck.msg);
+//		}
 	}
 
 }

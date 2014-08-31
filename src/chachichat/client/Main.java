@@ -17,7 +17,6 @@ public class Main {
 		try {
 			cliente = new ChatClient(ip, puerto);
 			System.out.println("Connecting to ip " + ip);
-//			cliente.sendMessage("Holaaaaa");
 			running(cliente, sc);
 		} catch (IOException e) {
 			System.out.println("Unable to connect to "+ip);
