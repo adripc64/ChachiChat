@@ -2,7 +2,7 @@ package chachichat.server;
 
 import java.io.IOException;
 
-import chachichat.packets.PacketUtils;
+import chachichat.packets.Packets;
 
 import com.esotericsoftware.kryonet.Server;
 
@@ -16,10 +16,11 @@ public class ChatServer {
 		this.port = port;
 		
 		server = new Server();
+		Packets.registerPackets(server.getKryo());
 		server.start();
-		PacketUtils.registerPackets(server.getKryo());
-		server.bind(port);
 		server.addListener(new ServerListener());
+		server.bind(port);
+		
 		
 		System.out.println("Server running at port " + port + "...");
 		

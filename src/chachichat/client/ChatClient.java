@@ -2,8 +2,8 @@ package chachichat.client;
 
 import java.io.IOException;
 
-import chachichat.packets.PacketMessage;
-import chachichat.packets.PacketUtils;
+import chachichat.packets.Packets;
+import chachichat.packets.Packets.*;
 
 import com.esotericsoftware.kryonet.Client;
 
@@ -14,18 +14,19 @@ public class ChatClient {
 	public ChatClient(String ip, int port) throws IOException {
 		
 		client = new Client();
-	    client.start();
-		PacketUtils.registerPackets(client.getKryo());
+		Packets.registerPackets(client.getKryo());
+		client.start();
+		client.addListener(new ClientListener());
 	    client.connect(5000, ip, port);
 	    
-	    sendMessage("jelouuuu!");
-		
 	}
 
 	public void sendMessage(String msg) {
 		
-		PacketMessage pck = new PacketMessage(msg);
-		client.sendTCP(pck);
+		//PacketMessage pck = new PacketMessage(msg);
+		//client.sendTCP(pck);
+		client.sendTCP(msg);
+		System.out.println("Se ha mandado el mensaje: " + msg);
 		
 	}
 	
