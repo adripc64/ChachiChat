@@ -3,8 +3,6 @@ package chachichat.client;
 import java.io.IOException;
 import java.util.Scanner;
 
-import com.sun.xml.internal.ws.resources.SenderMessages;
-
 public class Main {
 
 	public static void main(String[] args) {
@@ -14,22 +12,24 @@ public class Main {
 		String ip = sc.next();
 		int puerto = 7778;
 		
-		ChatClient cliente = new ChatClient(ip, port);
+		ChatClient cliente;
 		
 		try {
 			cliente = new ChatClient(ip, puerto);
 			System.out.println("Conectando a la ip " + ip);
+			running(cliente, sc);
 		} catch (IOException e) {
 			System.out.println("Unable to connect to "+ip);
 		}
 
-		String texto = sc.next();
-		while (texto != "exit"){
-			cliente.sendMessage(texto);
-		}
-		
-		
 		sc.close();
+	}
+	
+	public static void running(ChatClient client, Scanner sc) {
+		String line = sc.nextLine();
+		while (!line.equals("exit")) {
+			client.sendMessage(line);
+		}
 	}
 
 }
